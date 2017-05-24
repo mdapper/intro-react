@@ -1,7 +1,6 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
 
-
 module.exports = {
   entry: [
     'react-hot-loader/patch',
@@ -28,27 +27,17 @@ module.exports = {
     // necessary for HMR to know where to load the hot update chunks
   },
 
-  devtool: 'eval',
+  devtool: 'inline-source-map',
 
   resolve: {
     extensions: ['.js']
-  },
-
-  devServer: {
-    hot: true,
-    // enable HMR on the server
-
-    contentBase: resolve(__dirname, 'public'),
-    // match the output path
-
-    publicPath: '/',
-    // match the output `publicPath`
   },
 
   stats: {
     colors: true,
     reasons: true
   },
+
   module: {
     rules: [
       {
@@ -62,7 +51,16 @@ module.exports = {
         test: /\.css$/,
         use: [
           'style-loader',
-          'css-loader?modules',
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+              modules: true,
+              importLoaders: 1,
+              localIdentName: '[name]__[local]__[hash:base64:5]',
+              url: false
+            }
+          },
           {
             loader: 'postcss-loader',
             options: {
@@ -77,8 +75,23 @@ module.exports = {
       },
     ],
   },
+
+  devServer: {
+    hot: true,
+    // enable HMR on the server
+
+    contentBase: resolve(__dirname, 'public'),
+    // match the output path
+
+    publicPath: '/',
+    // match the output `publicPath`
+  },
+
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    // enable HMR globally
+
     new webpack.NamedModulesPlugin(),
+    // prints more readable module names in the browser console on HMR updates
   ],
 };
