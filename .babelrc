@@ -1,6 +1,16 @@
 {
   "presets": [
-    ["es2015", {"modules": false, "loose": true}],
+    ["env", {
+      "targets": {
+        "browsers": [
+          "> 2%",
+          "last 2 versions"
+        ]
+      },
+      "modules": false,
+      "loose": true
+    }],
     "react"
-  ]
+  ],
+  "plugins": ["react-hot-loader/babel"]
 }
