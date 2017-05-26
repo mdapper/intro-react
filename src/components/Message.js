@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Message.css';
+import styles from './Message.scss';
 
 const Message = (props) => (
   <div className={styles.title}>
