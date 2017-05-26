@@ -22,8 +22,10 @@
     "babel-preset-env": "^1.5.1",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.2",
+    "node-sass": "^4.5.3",
     "postcss-loader": "^2.0.5",
     "react-hot-loader": "next",
+    "sass-loader": "^6.0.5",
     "style-loader": "^0.18.1",
     "webpack": "^2.6.0",
     "webpack-dev-server": "^2.4.5"
